@@ -1,5 +1,5 @@
 {
-  "name": "Auto Cropping",
+  "name": "imageAutoCropping",
   "version": "1.0.0",
   "description": "Image Auto cropping having black background & white subject  based on opencvjs",
   "main": "main.js",
