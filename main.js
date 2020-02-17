@@ -1,9 +1,9 @@
-var cv = require('./opencv');
-module.exports = function getCropingCordinates(imgElement, width, height) {
-  const canvas = document.createElement('canvas');
+var cv = require("./opencv");
+const getCropingCordinates = (imgElement, width, height) => {
+  const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext("2d");
   context.drawImage(imgElement, 0, 0, width, height);
 
   // reading canvas image using open cv
@@ -15,13 +15,22 @@ module.exports = function getCropingCordinates(imgElement, width, height) {
   const hierarchy = new cv.Mat();
 
   // finding different cordinates using contorus
-  cv.findContours(src, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+  cv.findContours(
+    src,
+    contours,
+    hierarchy,
+    cv.RETR_CCOMP,
+    cv.CHAIN_APPROX_SIMPLE
+  );
   let maxArea = 0;
   let cordinates = {};
   // drwaing and finding biggest cordinates
   for (let i = 0; i < contours.size(); ++i) {
-    const color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
-      Math.round(Math.random() * 255));
+    const color = new cv.Scalar(
+      Math.round(Math.random() * 255),
+      Math.round(Math.random() * 255),
+      Math.round(Math.random() * 255)
+    );
     cv.drawContours(dst, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
     // getting particular boundary
     const cnt = contours.get(i);
@@ -38,13 +47,14 @@ module.exports = function getCropingCordinates(imgElement, width, height) {
   contours.delete();
   hierarchy.delete();
   return cordinates;
-}
-module.exports = function cropImage(image, croppingCoords) {
+};
+const cropImage = (image, croppingCoords) => {
   const cc = croppingCoords;
-  const workCan = document.createElement('canvas'); // create a canvas
-  workCan.width = Math.floor(cc.width);  // set the canvas resolution to the cropped image size
+  const workCan = document.createElement("canvas"); // create a canvas
+  workCan.width = Math.floor(cc.width); // set the canvas resolution to the cropped image size
   workCan.height = Math.floor(cc.height);
-  const ctx = workCan.getContext('2d');    // get a 2D rendering interface
+  const ctx = workCan.getContext("2d"); // get a 2D rendering interface
   ctx.drawImage(image, -Math.floor(cc.x), -Math.floor(cc.y)); // draw the image offset to place it correctly on the cropped region
   return workCan.toDataURL();
-}
+};
+module.exports = { getCropingCordinates, cropImage };

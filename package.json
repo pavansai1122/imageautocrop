@@ -1,6 +1,6 @@
 {
-  "name": "imageAutoCropping",
-  "version": "1.0.4",
+  "name": "imageautocrop",
+  "version": "1.0.5",
   "description": "Image Auto cropping having black background & white subject based on opencvjs. Note it is in still development",
   "main": "bundle.js",
   "scripts": {
