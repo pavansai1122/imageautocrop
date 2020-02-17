@@ -1,8 +1,8 @@
 {
   "name": "imageAutoCropping",
-  "version": "1.0.0",
-  "description": "Image Auto cropping having black background & white subject  based on opencvjs",
-  "main": "main.js",
+  "version": "1.0.4",
+  "description": "Image Auto cropping having black background & white subject based on opencvjs. Note it is in still development",
+  "main": "bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,2 +1,3 @@
 # imageautocrop
-Image auto cropping havinfg black background based on opencvjs
+
+Image Auto cropping having black background & white subject based on opencvjs. Note it is in still development
